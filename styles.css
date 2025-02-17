@@ -16,6 +16,11 @@
     --spacing-lg: 2rem;
     --border-radius: 8px;
     --transition: all 0.3s ease;
+    --robot-primary: #00f7ff;
+    --robot-secondary: #0a1128;
+    --robot-accent: #4d9fff;
+    --robot-glow: rgba(0, 247, 255, 0.5);
+    --gradient-shine: linear-gradient(135deg, #00f7ff, #4d9fff);
 }
 
 body {
@@ -153,4 +158,295 @@ li {
         transform: none;
         box-shadow: none;
     }
+}
+
+/* Chat Container */
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Robot Button Styles */
+.chat-button {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: var(--robot-secondary);
+    border: 2px solid var(--robot-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px var(--robot-glow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px var(--robot-glow);
+}
+
+/* Robot Head */
+.robot-head {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.antenna {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 12px;
+    background: var(--robot-primary);
+}
+
+.antenna-light {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--robot-primary);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.robot-face {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-shine);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.eyes {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.eye {
+    width: 10px;
+    height: 10px;
+    background: var(--robot-secondary);
+    border-radius: 50%;
+    position: relative;
+    animation: blink 4s infinite;
+}
+
+.eye-light {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+}
+
+.mouth {
+    width: 15px;
+    height: 3px;
+    background: var(--robot-secondary);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mouth-line {
+    width: 100%;
+    height: 100%;
+    background: var(--robot-primary);
+    transform-origin: left;
+}
+
+/* Chat Box Styles */
+.chat-box {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 320px;
+    height: 450px;
+    background: var(--robot-secondary);
+    border: 2px solid var(--robot-primary);
+    border-radius: 15px;
+    box-shadow: 0 0 20px var(--robot-glow);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-box.active {
+    display: flex;
+    animation: slideIn 0.3s ease;
+}
+
+.chat-header {
+    background: var(--gradient-shine);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header h3 {
+    color: var(--robot-secondary);
+    margin: 0;
+    flex-grow: 1;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: var(--robot-secondary);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message.bot .message-content {
+    background: var(--gradient-shine);
+    color: var(--robot-secondary);
+    border-radius: 15px 15px 15px 0;
+}
+
+.message.user .message-content {
+    background: var(--robot-accent);
+    color: white;
+    border-radius: 15px 15px 0 15px;
+    margin-left: auto;
+}
+
+.message-content {
+    padding: 10px 15px;
+    max-width: 80%;
+    display: inline-block;
+}
+
+.chat-input {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 2px solid var(--robot-primary);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+}
+
+.chat-input input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.chat-input button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-shine);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.chat-input button svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--robot-secondary);
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes blink {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: var(--robot-primary);
+    border-radius: 3px;
+}
+
+/* Add these new styles for the hat while keeping all other styles the same */
+
+.cylinder-hat {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background: var(--robot-secondary);
+    border: 2px solid var(--robot-primary);
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 10px var(--robot-glow);
+}
+
+.hat-band {
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--robot-primary);
+    box-shadow: 0 0 5px var(--robot-glow);
+}
+
+.hat-shine {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 8px;
+    height: 2px;
+    background: white;
+    opacity: 0.6;
+    transform: rotate(-45deg);
 } 
