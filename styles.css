@@ -201,10 +201,12 @@ li {
     position: absolute;
     top: -15px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) rotate(15deg);
     width: 4px;
     height: 12px;
     background: var(--robot-primary);
+    transform-origin: bottom center;
+    animation: wobble 3s ease-in-out infinite;
 }
 
 .antenna-light {
@@ -449,4 +451,10 @@ li {
     background: white;
     opacity: 0.6;
     transform: rotate(-45deg);
+}
+
+/* Add wobble animation */
+@keyframes wobble {
+    0%, 100% { transform: translateX(-50%) rotate(15deg); }
+    50% { transform: translateX(-50%) rotate(-15deg); }
 } 
