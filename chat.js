@@ -52,19 +52,38 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Get bot response
+    // Get bot response using OpenAI API
     async function getBotResponse(message) {
-        // Simple response logic
-        const responses = {
-            'hello': 'Hi there! How can I help you?',
-            'how are you': 'I\'m doing great, thanks for asking!',
-            'bye': 'Goodbye! Have a great day!',
-            'default': 'I\'m not sure how to respond to that. Could you please rephrase?'
-        };
+        try {
+            // Show typing indicator
+            addMessage('...', 'bot typing');
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+            const response = await fetch('/.netlify/functions/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message })
+            });
 
-        const response = responses[message.toLowerCase()] || responses.default;
-        addMessage(response, 'bot');
+            if (!response.ok) {
+                throw new Error('API request failed');
+            }
+
+            const data = await response.json();
+            
+            // Remove typing indicator
+            const typingIndicator = chatMessages.querySelector('.bot.typing');
+            if (typingIndicator) {
+                chatMessages.removeChild(typingIndicator);
+            }
+
+            // Add bot's response
+            addMessage(data.response, 'bot');
+
+        } catch (error) {
+            console.error('Error:', error);
+            addMessage('Sorry, I encountered an error. Please try again.', 'bot');
+        }
     }
 }); 
