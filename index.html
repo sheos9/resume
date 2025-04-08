@@ -3,64 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Resume</title>
+    <title>Gordon Sommer - Professional Resume</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Add Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <h1>Your Name</h1>
-        <p>Email: your.email@example.com | Phone: (123) 456-7890</p>
-        <p>Location: City, Country</p>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Professional Summary</h2>
-        <p>A brief summary of your professional background and career objectives.</p>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Work Experience</h2>
-        <div class="job">
-            <h3>Job Title</h3>
-            <p>Company Name | Location | Date - Present</p>
-            <ul>
-                <li>Key achievement or responsibility 1</li>
-                <li>Key achievement or responsibility 2</li>
-                <li>Key achievement or responsibility 3</li>
-            </ul>
+    <nav class="nav">
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About Me</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#contact" class="nav-button">Contact</a>
         </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="education">
-            <h3>Degree Name</h3>
-            <p>University Name | Graduation Year</p>
-            <p>Relevant coursework or achievements</p>
+        <div class="language-switcher">
+            <button class="language-option active" data-lang="en">EN</button>
+            <button class="language-option" data-lang="de">DE</button>
         </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <img src="assets/images/Gordon_Sommer4.png" alt="Gordon Sommer" class="profile-pic">
+                </div>
+                <div class="hero-text">
+                    <h1>Hi, I'm <span>Gordon Sommer</span></h1>
+                    <p>Marketing expert with a passion for creating effective, data-driven, and user-friendly campaigns.</p>
+                </div>
+            </div>
+            <div class="paper-airplane">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white">
+                    <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" stroke-width="1"/>
+                </svg>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <p>I am a versatile, curious, and positive person with excellent communication skills.</p>
+        </section>
+
+        <section id="experience" class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <!-- Professional Experience -->
+                <div class="timeline-item">
+                    <h3>Social Media Manager</h3>
+                    <p class="timeline-date">Chimfunshi | 03/2025 - heute</p>
+                    <ul>
+                        <li>Strategic planning, Content creation</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Managing Director (Marketing Concept)</h3>
+                    <p class="timeline-date">Visualmate UG | 01/2018 - 02/2024</p>
+                    <ul>
+                        <li>Advertising service provider in the B2B sector</li>
+                        <li>Target group analysis</li>
+                        <li>Branding / Brand design creation</li>
+                        <li>Implementation of marketing across various sales channels</li>
+                        <li>Product development</li>
+                        <li>Sales</li>
+                        <li>Promotion and sales promotion</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Jägermeister</h3>
+                    <p class="timeline-date">06/2008 - 12/2017</p>
+                    <ul>
+                        <li>Organization, deployment planning, customer care</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Section -->
+        <section id="education" class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>AI for Business (English)</h3>
+                    <p class="timeline-date">WBS Coding School | 12/2024 - 02/2025</p>
+                    <ul>
+                        <li>Productivity enhancement with AI tools</li>
+                        <li>Project management with focus on AI projects</li>
+                        <li>Application of AI across various industries</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>AI and CS 50 Further Education</h3>
+                    <p class="timeline-date">diverse learning platforms | 02/2024 - 11/2024</p>
+                    <ul>
+                        <li>Marketing trends and artificial intelligence</li>
+                        <li>Creation of audiovisual content via AI</li>
+                        <li>AI-supported process automation</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Online Marketing Expert</h3>
+                    <p class="timeline-date">IU Academy | 05/2023 - 01/2024</p>
+                    <ul>
+                        <li>Social media marketing campaigns and content creation</li>
+                        <li>Digital and mobile campaigns</li>
+                        <li>Web analytics</li>
+                        <li>SEO and SEA optimization</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Content Creator</h3>
+                    <p class="timeline-date">Comcave | 01/2023 - 04/2023</p>
+                    <ul>
+                        <li>Video editing</li>
+                        <li>IT systems and software tools for YouTube channel management</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Diploma Economist</h3>
+                    <p class="timeline-date">University of Kassel | 10/2007 - 06/2014</p>
+                    <ul>
+                        <li>Marketing and international management</li>
+                        <li>Private and public management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Hard Skills</h3>
+                    <ul>
+                        <li>Online Marketing</li>
+                        <li>Content Creation</li>
+                        <li>AI Processes</li>
+                        <li>Project Management</li>
+                        <li>Video Editing</li>
+                        <li>Image Editing</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Solution-oriented</li>
+                        <li>Hands-on Mentality</li>
+                        <li>Cooperative</li>
+                        <li>Strong Communication Skills</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="integrations">
+            <img src="path-to-logo1.png" alt="Integration 1" class="integration-logo">
+            <img src="path-to-logo2.png" alt="Integration 2" class="integration-logo">
+            <img src="path-to-logo3.png" alt="Integration 3" class="integration-logo">
+        </section>
     </div>
 
-    <div class="section">
-        <h2 class="section-title">Skills</h2>
-        <ul>
-            <li>Skill 1</li>
-            <li>Skill 2</li>
-            <li>Skill 3</li>
-            <li>Skill 4</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">Projects</h2>
-        <div class="project">
-            <h3>Project Name</h3>
-            <p>Brief description of the project and your role</p>
-        </div>
-    </div>
-
-    <!-- Add this before closing body tag -->
+    <!-- Chatbot Container - Unchanged -->
     <div class="chat-container">
         <button class="chat-button" id="chatButton">
             <div class="robot-head">
@@ -84,15 +193,27 @@
         </button>
         <div class="chat-box" id="chatBox">
             <div class="chat-header">
-                <div class="robot-icon">
-                    <div class="mini-robot-face">
-                        <div class="mini-eyes">
-                            <div class="mini-eye"></div>
-                            <div class="mini-eye"></div>
+                <div class="mini-robot">
+                    <div class="mini-robot-head">
+                        <div class="mini-antenna">
+                            <div class="mini-antenna-light"></div>
+                        </div>
+                        <div class="mini-robot-face">
+                            <div class="mini-eyes">
+                                <div class="mini-eye">
+                                    <div class="mini-eye-light"></div>
+                                </div>
+                                <div class="mini-eye">
+                                    <div class="mini-eye-light"></div>
+                                </div>
+                            </div>
+                            <div class="mini-mouth">
+                                <div class="mini-mouth-line"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <h3>RoboChat Assistant</h3>
+                <h3>Gordon's AI Chatbot</h3>
                 <button class="close-button" id="closeChat">×</button>
             </div>
             <div class="chat-messages" id="chatMessages">
@@ -112,10 +233,321 @@
             </div>
         </div>
     </div>
-    
-    <!-- Add Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Add our JavaScript -->
+
     <script src="chat.js"></script>
+    
+    <!-- Language Switcher Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll event listener for navigation blur effect
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('.nav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            const languageOptions = document.querySelectorAll('.language-option');
+            
+            // Text translations
+            const translations = {
+                en: {
+                    // Navigation
+                    about: "About Me",
+                    experience: "Experience",
+                    education: "Education",
+                    skills: "Skills",
+                    contact: "Contact",
+                    
+                    // Hero section
+                    building: "Building",
+                    innovative: "innovative",
+                    solutions: "solutions.",
+                    tagline: "Marketing expert with a passion for creating effective, data-driven, and user-friendly campaigns.",
+                    getInTouch: "Get in touch",
+                    
+                    // Section titles
+                    aboutMe: "About Me",
+                    experienceTitle: "Experience",
+                    educationTitle: "Education",
+                    skillsTitle: "Skills & Technologies",
+                    
+                    // About section
+                    aboutText: "I am a versatile, curious, and positive person with excellent communication skills.",
+                    
+                    // Skills section
+                    hardSkills: "Hard Skills",
+                    softSkills: "Soft Skills",
+                    // Individual skills
+                    onlineMarketing: "Online Marketing",
+                    contentCreation: "Content Creation",
+                    aiProcesses: "AI Processes",
+                    projectManagement: "Project Management",
+                    videoEditing: "Video Editing",
+                    imageEditing: "Image Editing",
+                    solutionOriented: "Solution-oriented",
+                    handsOn: "Hands-on Mentality",
+                    cooperative: "Cooperative",
+                    communicationStrong: "Strong Communication Skills",
+                    
+                    // Experience section
+                    socialMediaManager: "Social Media Manager",
+                    chimfunshi: "Chimfunshi",
+                    strategicPlanning: "Strategic planning and content creation",
+                    
+                    managingDirector: "Managing Director (Marketing Concept)",
+                    visualmate: "Visualmate UG",
+                    b2bAdvertising: "Advertising service provider in the B2B sector",
+                    targetGroupAnalysis: "Target group analysis",
+                    branding: "Branding and brand design creation",
+                    marketingImplementation: "Implementation of marketing across various sales channels",
+                    productDevelopment: "Product development",
+                    sales: "Sales",
+                    promotion: "Promotion and sales promotion",
+                    
+                    jaegermeister: "Jaegermeister",
+                    organization: "Organization, deployment planning, customer care",
+                    
+                    aiForBusiness: "AI for Business (English)",
+                    wbsCodingSchool: "WBS Coding School",
+                    productivityEnhancement: "Productivity enhancement with AI tools",
+                    projectManagement: "Project management with focus on AI projects",
+                    aiApplication: "Application of AI across various industries",
+                    
+                    aiAndCs50: "AI and CS 50 Further Education",
+                    diversePlatforms: "diverse learning platforms",
+                    marketingTrends: "Marketing trends and artificial intelligence",
+                    audiovisualContent: "Creation of audiovisual content via AI",
+                    processAutomation: "AI-supported process automation",
+                    
+                    onlineMarketingExpert: "Online Marketing Expert",
+                    iuAcademy: "IU Academy",
+                    socialMediaCampaigns: "Social media marketing campaigns and content creation",
+                    digitalCampaigns: "Digital and mobile campaigns",
+                    webAnalytics: "Web analytics",
+                    seoOptimization: "SEO and SEA optimization",
+                    
+                    contentCreator: "Content Creator",
+                    comcave: "Comcave",
+                    youtubeManagement: "IT systems and software tools for YouTube channel management",
+                    
+                    diplomaEconomist: "Diploma Economist",
+                    kasselUniversity: "University of Kassel",
+                    marketingManagement: "Marketing and international management",
+                    publicManagement: "Private and public management",
+                    heroTitle: "Hi, I'm <span>Gordon Sommer</span>"
+                },
+                de: {
+                    // Navigation
+                    about: "Über Mich",
+                    experience: "Beruflicher Werdegang",
+                    education: "Akademische Laufbahn",
+                    skills: "Fähigkeiten",
+                    contact: "Kontakt",
+                    
+                    // Hero section
+                    building: "Entwicklung",
+                    innovative: "innovativer",
+                    solutions: "Lösungen.",
+                    tagline: "Marketingexperte mit Leidenschaft für effektive, datengesteuerte und benutzerfreundliche Kampagnen.",
+                    getInTouch: "Kontakt aufnehmen",
+                    
+                    // Section titles
+                    aboutMe: "Über Mich",
+                    experienceTitle: "Beruflicher Werdegang",
+                    educationTitle: "Akademische Laufbahn",
+                    skillsTitle: "Fähigkeiten & Technologien",
+                    
+                    // About section
+                    aboutText: "Ich bin eine vielseitige, wissbegierige und positive Person, welche über ausgezeichnete Kommunikationsfähigkeiten verfügt.",
+                    
+                    // Skills section
+                    hardSkills: "Hard Skills",
+                    softSkills: "Soft Skills",
+                    // Individual skills
+                    onlineMarketing: "Onlinemarketing",
+                    contentCreation: "Content-Erstellung",
+                    aiProcesses: "KI Prozesse",
+                    projectManagement: "Projektmanagement",
+                    videoEditing: "Videoschnitt",
+                    imageEditing: "Bildbearbeitung",
+                    solutionOriented: "lösungsorientiert",
+                    handsOn: "hands-on Mentalität",
+                    cooperative: "kooperativ",
+                    communicationStrong: "kommunikationsstark",
+                    
+                    // Experience section
+                    socialMediaManager: "Social Media Manager",
+                    chimfunshi: "Chimfunshi",
+                    strategicPlanning: "Strategische Planung, Content-Erstellung",
+                    
+                    managingDirector: "Geschäftsführer (Konzeption Marketing)",
+                    visualmate: "Visualmate UG",
+                    b2bAdvertising: "Werbedienstleister im B2B Bereich",
+                    targetGroupAnalysis: "Zielgruppenanalyse",
+                    branding: "Branding / Markendesign erstellt",
+                    marketingImplementation: "Umsetzung des Marketings auf verschiedenen Vertriebskanälen",
+                    productDevelopment: "Produktentwicklung",
+                    sales: "Vertrieb",
+                    promotion: "Promotion / Verkaufsförderung",
+                    
+                    jaegermeister: "Jägermeister",
+                    organization: "Organisation, Einsatzplanung, Kundenbetreuung",
+                    
+                    aiForBusiness: "AI for Business (English)",
+                    wbsCodingSchool: "WBS Coding School",
+                    productivityEnhancement: "Steigerung der Produktivität in Unternehmen mithilfe von KI-Tools",
+                    projectManagement: "Projektmanagement mit Fokus auf KI-Projekte",
+                    aiApplication: "Anwendung von KI in diversen Branchen",
+                    
+                    aiAndCs50: "KI und CS 50 Weiterbildungen",
+                    diversePlatforms: "diverse Lernplattformen",
+                    marketingTrends: "generelle Trends im Marketing und künstliche Intelligenz",
+                    audiovisualContent: "Erstellung von autovisuellen Inhalten via KI",
+                    processAutomation: "KI gestützte Prozessautomatisierung",
+                    
+                    onlineMarketingExpert: "Online Marketing Expert",
+                    iuAcademy: "IU Akademie",
+                    socialMediaCampaigns: "Social Media Marketing Kampagnen, sowie Content Erstellung",
+                    digitalCampaigns: "Digital and Mobile Campaigns",
+                    webAnalytics: "Web Analytics",
+                    seoOptimization: "SEO und SEA Optimierung",
+                    
+                    contentCreator: "Content Creator",
+                    comcave: "Comcave",
+                    youtubeManagement: "IT-Systeme und Software-Tools für das YouTube Channel Management",
+                    
+                    diplomaEconomist: "Diplom-Ökonom",
+                    kasselUniversity: "Universität Kassel",
+                    marketingManagement: "Marketing und internationales Management",
+                    publicManagement: "Private and Public Management",
+                    heroTitle: "Hallo, ich bin <span>Gordon Sommer</span>"
+                }
+            };
+            
+            // Handle language switching
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const language = this.getAttribute('data-lang');
+                    
+                    // Update active class
+                    languageOptions.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update HTML content
+                    document.querySelector('html').setAttribute('lang', language);
+                    
+                    // Update navigation links
+                    document.querySelectorAll('.nav-link')[0].textContent = translations[language].about;
+                    document.querySelectorAll('.nav-link')[1].textContent = translations[language].experience;
+                    document.querySelectorAll('.nav-link')[2].textContent = translations[language].education;
+                    document.querySelectorAll('.nav-link')[3].textContent = translations[language].skills;
+                    document.querySelector('.nav-button').textContent = translations[language].contact;
+                    
+                    // Update section titles
+                    document.querySelectorAll('.section-title')[0].textContent = translations[language].aboutMe;
+                    document.querySelectorAll('.section-title')[1].textContent = translations[language].experienceTitle;
+                    document.querySelectorAll('.section-title')[2].textContent = translations[language].educationTitle;
+                    document.querySelectorAll('.section-title')[3].textContent = translations[language].skillsTitle;
+                    
+                    // Update about section
+                    document.querySelector('#about p').textContent = translations[language].aboutText;
+                    
+                    // Update skills section
+                    document.querySelectorAll('.skill-category h3')[0].textContent = translations[language].hardSkills;
+                    document.querySelectorAll('.skill-category h3')[1].textContent = translations[language].softSkills;
+                    
+                    // Update individual skills
+                    const hardSkillsList = document.querySelectorAll('.skill-category ul')[0].querySelectorAll('li');
+                    hardSkillsList[0].textContent = translations[language].onlineMarketing;
+                    hardSkillsList[1].textContent = translations[language].contentCreation;
+                    hardSkillsList[2].textContent = translations[language].aiProcesses;
+                    hardSkillsList[3].textContent = translations[language].projectManagement;
+                    hardSkillsList[4].textContent = translations[language].videoEditing;
+                    hardSkillsList[5].textContent = translations[language].imageEditing;
+                    
+                    const softSkillsList = document.querySelectorAll('.skill-category ul')[1].querySelectorAll('li');
+                    softSkillsList[0].textContent = translations[language].solutionOriented;
+                    softSkillsList[1].textContent = translations[language].handsOn;
+                    softSkillsList[2].textContent = translations[language].cooperative;
+                    softSkillsList[3].textContent = translations[language].communicationStrong;
+                    
+                    // Update experience section
+                    const timelineItems = document.querySelectorAll('.timeline-item');
+                    
+                    // Social Media Manager
+                    timelineItems[0].querySelector('h3').textContent = translations[language].socialMediaManager;
+                    timelineItems[0].querySelector('.timeline-date').textContent = `${translations[language].chimfunshi} | 03/2025 - heute`;
+                    timelineItems[0].querySelector('li').textContent = translations[language].strategicPlanning;
+                    
+                    // Managing Director
+                    timelineItems[1].querySelector('h3').textContent = translations[language].managingDirector;
+                    timelineItems[1].querySelector('.timeline-date').textContent = `${translations[language].visualmate} | 01/2018 - 02/2024`;
+                    const managingDirectorItems = timelineItems[1].querySelectorAll('li');
+                    managingDirectorItems[0].textContent = translations[language].b2bAdvertising;
+                    managingDirectorItems[1].textContent = translations[language].targetGroupAnalysis;
+                    managingDirectorItems[2].textContent = translations[language].branding;
+                    managingDirectorItems[3].textContent = translations[language].marketingImplementation;
+                    managingDirectorItems[4].textContent = translations[language].productDevelopment;
+                    managingDirectorItems[5].textContent = translations[language].sales;
+                    managingDirectorItems[6].textContent = translations[language].promotion;
+                    
+                    // Jaegermeister
+                    timelineItems[2].querySelector('h3').textContent = translations[language].jaegermeister;
+                    timelineItems[2].querySelector('.timeline-date').textContent = `06/2008 - 12/2017`;
+                    timelineItems[2].querySelector('li').textContent = translations[language].organization;
+                    
+                    // AI for Business
+                    timelineItems[3].querySelector('h3').textContent = translations[language].aiForBusiness;
+                    timelineItems[3].querySelector('.timeline-date').textContent = `${translations[language].wbsCodingSchool} | 12/2024 - 02/2025`;
+                    const aiForBusinessItems = timelineItems[3].querySelectorAll('li');
+                    aiForBusinessItems[0].textContent = translations[language].productivityEnhancement;
+                    aiForBusinessItems[1].textContent = translations[language].projectManagement;
+                    aiForBusinessItems[2].textContent = translations[language].aiApplication;
+                    
+                    // AI and CS 50
+                    timelineItems[4].querySelector('h3').textContent = translations[language].aiAndCs50;
+                    timelineItems[4].querySelector('.timeline-date').textContent = `${translations[language].diversePlatforms} | 02/2024 - 11/2024`;
+                    const aiAndCs50Items = timelineItems[4].querySelectorAll('li');
+                    aiAndCs50Items[0].textContent = translations[language].marketingTrends;
+                    aiAndCs50Items[1].textContent = translations[language].audiovisualContent;
+                    aiAndCs50Items[2].textContent = translations[language].processAutomation;
+                    
+                    // Online Marketing Expert
+                    timelineItems[5].querySelector('h3').textContent = translations[language].onlineMarketingExpert;
+                    timelineItems[5].querySelector('.timeline-date').textContent = `${translations[language].iuAcademy} | 05/2023 - 01/2024`;
+                    const onlineMarketingItems = timelineItems[5].querySelectorAll('li');
+                    onlineMarketingItems[0].textContent = translations[language].socialMediaCampaigns;
+                    onlineMarketingItems[1].textContent = translations[language].digitalCampaigns;
+                    onlineMarketingItems[2].textContent = translations[language].webAnalytics;
+                    onlineMarketingItems[3].textContent = translations[language].seoOptimization;
+                    
+                    // Content Creator
+                    timelineItems[6].querySelector('h3').textContent = translations[language].contentCreator;
+                    timelineItems[6].querySelector('.timeline-date').textContent = `${translations[language].comcave} | 01/2023 - 04/2023`;
+                    const contentCreatorItems = timelineItems[6].querySelectorAll('li');
+                    contentCreatorItems[0].textContent = translations[language].videoEditing;
+                    contentCreatorItems[1].textContent = translations[language].youtubeManagement;
+                    
+                    // Diploma Economist
+                    timelineItems[7].querySelector('h3').textContent = translations[language].diplomaEconomist;
+                    timelineItems[7].querySelector('.timeline-date').textContent = `${translations[language].kasselUniversity} | 10/2007 - 06/2014`;
+                    const diplomaItems = timelineItems[7].querySelectorAll('li');
+                    diplomaItems[0].textContent = translations[language].marketingManagement;
+                    diplomaItems[1].textContent = translations[language].publicManagement;
+                    
+                    // Update hero content
+                    document.querySelector('.hero h1').innerHTML = translations[language].heroTitle;
+                    document.querySelector('.hero p').textContent = translations[language].tagline;
+                });
+            });
+            
+            // Set initial language based on active button
+            const activeLanguage = document.querySelector('.language-option.active').getAttribute('data-lang');
+            document.querySelector('html').setAttribute('lang', activeLanguage);
+        });
+    </script>
 </body>
 </html>
