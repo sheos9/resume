@@ -86,4 +86,72 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage('Sorry, I encountered an error. Please try again.', 'bot');
         }
     }
+
+    // Language switcher
+    const langButton = document.querySelector('.lang-option');
+    const flagIcon = langButton.querySelector('.flag-icon');
+
+    langButton.addEventListener('click', () => {
+        const currentLang = langButton.getAttribute('data-lang');
+        const newLang = currentLang === 'en' ? 'de' : 'en';
+        
+        // Update button attributes
+        langButton.setAttribute('data-lang', newLang);
+        flagIcon.src = `assets/images/flags/${newLang}.svg`;
+        flagIcon.alt = newLang === 'en' ? 'English' : 'Deutsch';
+        
+        // Update content
+        updateContent(newLang);
+    });
+
+    function updateContent(lang) {
+        // Update all text content based on language
+        const translations = {
+            en: {
+                about: 'About Me',
+                experience: 'Experience',
+                education: 'Education',
+                skills: 'Skills',
+                contact: 'Contact'
+            },
+            de: {
+                about: 'Über Mich',
+                experience: 'Erfahrung',
+                education: 'Ausbildung',
+                skills: 'Fähigkeiten',
+                contact: 'Kontakt'
+            }
+        };
+
+        // Update navigation links
+        document.querySelectorAll('.menu-link').forEach(link => {
+            const key = link.getAttribute('href').replace('#', '');
+            if (translations[lang][key]) {
+                link.textContent = translations[lang][key];
+            }
+        });
+    }
+
+    // Hamburger menu functionality
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const menuItems = document.querySelector('.menu-items');
+    const closeMenu = document.querySelector('.close-menu');
+
+    hamburgerMenu.addEventListener('click', function() {
+        menuItems.classList.add('active');
+        hamburgerMenu.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', function() {
+        menuItems.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!menuItems.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+            menuItems.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        }
+    });
 }); 

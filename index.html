@@ -9,16 +9,31 @@
 </head>
 <body>
     <nav class="nav">
-        <div class="nav-links">
-            <a href="#about" class="nav-link">About Me</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#education" class="nav-link">Education</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#contact" class="nav-button">Contact</a>
-        </div>
-        <div class="language-switcher">
-            <button class="language-option active" data-lang="en">EN</button>
-            <button class="language-option" data-lang="de">DE</button>
+        <div class="nav-right">
+            <div class="hamburger-menu">
+                <div class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-items">
+                    <button class="close-menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="language-switcher">
+                        <button class="lang-option" data-lang="en">
+                            <img src="assets/images/flags/en.svg" alt="English" class="flag-icon">
+                        </button>
+                    </div>
+                    <a href="#about" class="menu-link">About Me</a>
+                    <a href="#experience" class="menu-link">Experience</a>
+                    <a href="#education" class="menu-link">Education</a>
+                    <a href="#skills" class="menu-link">Skills</a>
+                    <a href="#contact" class="menu-link">Contact</a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -53,7 +68,8 @@
                     <h3>Social Media Manager</h3>
                     <p class="timeline-date">Chimfunshi | 03/2025 - heute</p>
                     <ul>
-                        <li>Strategic planning, Content creation</li>
+                        <li>Strategic planning</li>
+                        <li>Content creation</li>
                     </ul>
                 </div>
 
@@ -75,7 +91,9 @@
                     <h3>Jägermeister</h3>
                     <p class="timeline-date">06/2008 - 12/2017</p>
                     <ul>
-                        <li>Organization, deployment planning, customer care</li>
+                        <li>Organization</li>
+                        <li>Deployment planning</li>
+                        <li>Customer care</li>
                     </ul>
                 </div>
             </div>
@@ -137,7 +155,7 @@
         </section>
 
         <section id="skills" class="section">
-            <h2 class="section-title">Skills & Technologies</h2>
+            <h2 class="section-title">Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>Hard Skills</h3>
@@ -148,15 +166,49 @@
                         <li>Project Management</li>
                         <li>Video Editing</li>
                         <li>Image Editing</li>
+                        <li>Künstliche Intelligenz (KI)</li>
+                        <li>Marketingstrategie</li>
+                        <li>Content Marketing</li>
+                        <li>Social-Media-Marketing</li>
+                        <li>Social-Media-Werbung</li>
+                        <li>Social-Media-Kommunikation</li>
+                        <li>Soziale Medien</li>
+                        <li>Digitale Kommunikation</li>
+                        <li>Digitales Marketing</li>
+                        <li>Content-Management</li>
+                        <li>Online Vertrieb</li>
+                        <li>Digital Imaging</li>
+                        <li>B2B-Marketing</li>
+                        <li>Business-to-Business (B2B)</li>
+                        <li>B2B-Marketingstrategie</li>
+                        <li>Strategische Kommunikation</li>
+                        <li>Interne Kommunikation</li>
+                        <li>Englisch fließend</li>
+                        <li>Marketing und internationales Management</li>
+                        <li>Private and Public Management</li>
+                        <li>Technologische Innovation</li>
+                        <li>Projektmanagement mit Fokus auf KI-Projekte</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Soft Skills</h3>
                     <ul>
-                        <li>Solution-oriented</li>
-                        <li>Hands-on Mentality</li>
-                        <li>Cooperative</li>
-                        <li>Strong Communication Skills</li>
+                        <li>Lösungsorientiert</li>
+                        <li>Hands-on Mentalität</li>
+                        <li>Kooperativ</li>
+                        <li>Kommunikationsstark</li>
+                        <li>Empathetic</li>
+                        <li>Self-responsible</li>
+                        <li>Creative</li>
+                        <li>Self-reflective</li>
+                        <li>Willing to learn</li>
+                        <li>Team player (also remote)</li>
+                        <li>Socially competent</li>
+                        <li>Strong written expression</li>
+                        <li>Culturally open</li>
+                        <li>Digitally affine</li>
+                        <li>Structured</li>
+                        <li>Responsible</li>
                     </ul>
                 </div>
             </div>
@@ -239,6 +291,43 @@
     <!-- Language Switcher Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu toggle
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const menuItems = document.querySelector('.menu-items');
+            const hamburgerIcon = document.querySelector('.hamburger-icon');
+            
+            // Toggle menu on hamburger click
+            hamburgerIcon.addEventListener('click', function(event) {
+                event.stopPropagation();
+                toggleMenu();
+            });
+
+            function toggleMenu() {
+                hamburgerMenu.classList.toggle('active');
+                menuItems.classList.toggle('active');
+            }
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!hamburgerMenu.contains(event.target) && menuItems.classList.contains('active')) {
+                    hamburgerMenu.classList.remove('active');
+                    menuItems.classList.remove('active');
+                }
+            });
+
+            // Prevent menu from closing when clicking inside it
+            menuItems.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+
+            // Close menu when clicking a menu link
+            document.querySelectorAll('.menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerMenu.classList.remove('active');
+                    menuItems.classList.remove('active');
+                });
+            });
+
             // Add scroll event listener for navigation blur effect
             window.addEventListener('scroll', function() {
                 const nav = document.querySelector('.nav');
@@ -249,12 +338,13 @@
                 }
             });
 
-            const languageOptions = document.querySelectorAll('.language-option');
+            // Get language options and handle language switching
+            const languageOptions = document.querySelectorAll('.menu-items .lang-option');
             
             // Text translations
             const translations = {
                 en: {
-                    // Navigation
+                    // Navigation - Using the same width as German text
                     about: "About Me",
                     experience: "Experience",
                     education: "Education",
@@ -272,7 +362,7 @@
                     aboutMe: "About Me",
                     experienceTitle: "Experience",
                     educationTitle: "Education",
-                    skillsTitle: "Skills & Technologies",
+                    skillsTitle: "Skills",
                     
                     // About section
                     aboutText: "I am a versatile, curious, and positive person with excellent communication skills.",
@@ -287,28 +377,57 @@
                     projectManagement: "Project Management",
                     videoEditing: "Video Editing",
                     imageEditing: "Image Editing",
+                    kunstlicheIntelligenz: "Artificial Intelligence (AI)",
+                    marketingstrategie: "Marketing Strategy",
+                    contentMarketing: "Content Marketing",
+                    socialMediaMarketing: "Social Media Marketing",
+                    socialMediaAdvertising: "Social Media Advertising",
+                    socialMediaCommunication: "Social Media Communication",
+                    socialMedia: "Social Media",
+                    digitalCommunication: "Digital Communication",
+                    digitalMarketing: "Digital Marketing",
+                    contentManagement: "Content Management",
+                    onlineSales: "Online Sales",
+                    digitalImaging: "Digital Imaging",
+                    b2bMarketing: "B2B Marketing",
+                    b2b: "Business-to-Business (B2B)",
+                    b2bMarketingStrategy: "B2B Marketing Strategy",
+                    strategicCommunication: "Strategic Communication",
+                    internalCommunication: "Internal Communication",
+                    englishFluent: "Fluent English",
+                    marketingAndInternationalManagement: "Marketing and International Management",
+                    privateAndPublicManagement: "Private and Public Management",
+                    technologicalInnovation: "Technological Innovation",
+                    projectManagementWithFocusOnAI: "Project Management with Focus on AI Projects",
                     solutionOriented: "Solution-oriented",
                     handsOn: "Hands-on Mentality",
                     cooperative: "Cooperative",
                     communicationStrong: "Strong Communication Skills",
+                    communication: "Communication",
+                    writtenCommunication: "Written Communication",
+                    teamwork: "Teamwork",
+                    analyticalSkills: "Analytical Skills",
                     
                     // Experience section
                     socialMediaManager: "Social Media Manager",
                     chimfunshi: "Chimfunshi",
-                    strategicPlanning: "Strategic planning and content creation",
+                    strategicPlanning: "Strategic planning",
+                    contentCreation: "Content creation",
                     
                     managingDirector: "Managing Director (Marketing Concept)",
                     visualmate: "Visualmate UG",
                     b2bAdvertising: "Advertising service provider in the B2B sector",
                     targetGroupAnalysis: "Target group analysis",
-                    branding: "Branding and brand design creation",
+                    branding: "Branding / Brand design creation",
                     marketingImplementation: "Implementation of marketing across various sales channels",
                     productDevelopment: "Product development",
                     sales: "Sales",
                     promotion: "Promotion and sales promotion",
                     
                     jaegermeister: "Jaegermeister",
-                    organization: "Organization, deployment planning, customer care",
+                    organization: "Organization",
+                    deploymentPlanning: "Deployment planning",
+                    customerCare: "Customer care",
                     
                     aiForBusiness: "AI for Business (English)",
                     wbsCodingSchool: "WBS Coding School",
@@ -337,7 +456,21 @@
                     kasselUniversity: "University of Kassel",
                     marketingManagement: "Marketing and international management",
                     publicManagement: "Private and public management",
-                    heroTitle: "Hi, I'm <span>Gordon Sommer</span>"
+                    heroTitle: "Hi, I'm <span>Gordon Sommer</span>",
+                    
+                    // Soft Skills
+                    empathetic: "Empathetic",
+                    selfResponsible: "Self-responsible",
+                    creative: "Creative",
+                    selfReflective: "Self-reflective",
+                    willingToLearn: "Willing to learn",
+                    teamPlayer: "Team player (also remote)",
+                    sociallyCompetent: "Socially competent",
+                    strongWrittenExpression: "Strong written expression",
+                    culturallyOpen: "Culturally open",
+                    digitallyAffine: "Digitally affine",
+                    structured: "Structured",
+                    responsible: "Responsible"
                 },
                 de: {
                     // Navigation
@@ -358,7 +491,7 @@
                     aboutMe: "Über Mich",
                     experienceTitle: "Beruflicher Werdegang",
                     educationTitle: "Akademische Laufbahn",
-                    skillsTitle: "Fähigkeiten & Technologien",
+                    skillsTitle: "Fähigkeiten",
                     
                     // About section
                     aboutText: "Ich bin eine vielseitige, wissbegierige und positive Person, welche über ausgezeichnete Kommunikationsfähigkeiten verfügt.",
@@ -373,15 +506,42 @@
                     projectManagement: "Projektmanagement",
                     videoEditing: "Videoschnitt",
                     imageEditing: "Bildbearbeitung",
-                    solutionOriented: "lösungsorientiert",
-                    handsOn: "hands-on Mentalität",
-                    cooperative: "kooperativ",
-                    communicationStrong: "kommunikationsstark",
+                    kunstlicheIntelligenz: "Künstliche Intelligenz (KI)",
+                    marketingstrategie: "Marketingstrategie",
+                    contentMarketing: "Content Marketing",
+                    socialMediaMarketing: "Social-Media-Marketing",
+                    socialMediaAdvertising: "Social-Media-Werbung",
+                    socialMediaCommunication: "Social-Media-Kommunikation",
+                    socialMedia: "Soziale Medien",
+                    digitalCommunication: "Digitale Kommunikation",
+                    digitalMarketing: "Digitales Marketing",
+                    contentManagement: "Content-Management",
+                    onlineSales: "Online Vertrieb",
+                    digitalImaging: "Digital Imaging",
+                    b2bMarketing: "B2B-Marketing",
+                    b2b: "Business-to-Business (B2B)",
+                    b2bMarketingStrategy: "B2B-Marketingstrategie",
+                    strategicCommunication: "Strategische Kommunikation",
+                    internalCommunication: "Interne Kommunikation",
+                    englishFluent: "Englisch fließend",
+                    marketingAndInternationalManagement: "Marketing und internationales Management",
+                    privateAndPublicManagement: "Private and Public Management",
+                    technologicalInnovation: "Technologische Innovation",
+                    projectManagementWithFocusOnAI: "Projektmanagement mit Fokus auf KI-Projekte",
+                    solutionOriented: "Lösungsorientiert",
+                    handsOn: "Hands-on Mentalität",
+                    cooperative: "Kooperativ",
+                    communicationStrong: "Kommunikationsstark",
+                    communication: "Kommunikation",
+                    writtenCommunication: "Schriftliche Kommunikation",
+                    teamwork: "Teamwork",
+                    analyticalSkills: "Analytische Fähigkeiten",
                     
                     // Experience section
                     socialMediaManager: "Social Media Manager",
                     chimfunshi: "Chimfunshi",
-                    strategicPlanning: "Strategische Planung, Content-Erstellung",
+                    strategicPlanning: "Strategische Planung",
+                    contentCreation: "Content-Erstellung",
                     
                     managingDirector: "Geschäftsführer (Konzeption Marketing)",
                     visualmate: "Visualmate UG",
@@ -394,7 +554,9 @@
                     promotion: "Promotion / Verkaufsförderung",
                     
                     jaegermeister: "Jägermeister",
-                    organization: "Organisation, Einsatzplanung, Kundenbetreuung",
+                    organization: "Organisation",
+                    deploymentPlanning: "Einsatzplanung",
+                    customerCare: "Kundenbetreuung",
                     
                     aiForBusiness: "AI for Business (English)",
                     wbsCodingSchool: "WBS Coding School",
@@ -423,7 +585,21 @@
                     kasselUniversity: "Universität Kassel",
                     marketingManagement: "Marketing und internationales Management",
                     publicManagement: "Private and Public Management",
-                    heroTitle: "Hallo, ich bin <span>Gordon Sommer</span>"
+                    heroTitle: "Hallo, ich bin <span>Gordon Sommer</span>",
+                    
+                    // Soft Skills
+                    empathetic: "Empathisch",
+                    selfResponsible: "Eigenverantwortlich",
+                    creative: "Kreativ",
+                    selfReflective: "Selbstreflektiert",
+                    willingToLearn: "Lernbereit",
+                    teamPlayer: "Teamfähig (auch remote)",
+                    sociallyCompetent: "Sozial kompetent",
+                    strongWrittenExpression: "Schriftlich ausdrucksstark",
+                    culturallyOpen: "Kulturell offen",
+                    digitallyAffine: "Digital affin",
+                    structured: "Strukturiert",
+                    responsible: "Verantwortungsbewusst"
                 }
             };
             
@@ -432,19 +608,20 @@
                 option.addEventListener('click', function() {
                     const language = this.getAttribute('data-lang');
                     
-                    // Update active class
+                    // Update active state
                     languageOptions.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Update HTML content
+                    // Update HTML lang attribute
                     document.querySelector('html').setAttribute('lang', language);
                     
                     // Update navigation links
-                    document.querySelectorAll('.nav-link')[0].textContent = translations[language].about;
-                    document.querySelectorAll('.nav-link')[1].textContent = translations[language].experience;
-                    document.querySelectorAll('.nav-link')[2].textContent = translations[language].education;
-                    document.querySelectorAll('.nav-link')[3].textContent = translations[language].skills;
-                    document.querySelector('.nav-button').textContent = translations[language].contact;
+                    const navLinks = document.querySelectorAll('.menu-link');
+                    navLinks[0].textContent = translations[language].about;
+                    navLinks[1].textContent = translations[language].experience;
+                    navLinks[2].textContent = translations[language].education;
+                    navLinks[3].textContent = translations[language].skills;
+                    navLinks[4].textContent = translations[language].contact;
                     
                     // Update section titles
                     document.querySelectorAll('.section-title')[0].textContent = translations[language].aboutMe;
@@ -467,12 +644,47 @@
                     hardSkillsList[3].textContent = translations[language].projectManagement;
                     hardSkillsList[4].textContent = translations[language].videoEditing;
                     hardSkillsList[5].textContent = translations[language].imageEditing;
+                    hardSkillsList[6].textContent = translations[language].kunstlicheIntelligenz;
+                    hardSkillsList[7].textContent = translations[language].marketingstrategie;
+                    hardSkillsList[8].textContent = translations[language].contentMarketing;
+                    hardSkillsList[9].textContent = translations[language].socialMediaMarketing;
+                    hardSkillsList[10].textContent = translations[language].socialMediaAdvertising;
+                    hardSkillsList[11].textContent = translations[language].socialMediaCommunication;
+                    hardSkillsList[12].textContent = translations[language].socialMedia;
+                    hardSkillsList[13].textContent = translations[language].digitalCommunication;
+                    hardSkillsList[14].textContent = translations[language].digitalMarketing;
+                    hardSkillsList[15].textContent = translations[language].contentManagement;
+                    hardSkillsList[16].textContent = translations[language].onlineSales;
+                    hardSkillsList[17].textContent = translations[language].digitalImaging;
+                    hardSkillsList[18].textContent = translations[language].b2bMarketing;
+                    hardSkillsList[19].textContent = translations[language].b2b;
+                    hardSkillsList[20].textContent = translations[language].b2bMarketingStrategy;
+                    hardSkillsList[21].textContent = translations[language].strategicCommunication;
+                    hardSkillsList[22].textContent = translations[language].internalCommunication;
+                    hardSkillsList[23].textContent = translations[language].englishFluent;
+                    hardSkillsList[24].textContent = translations[language].marketingAndInternationalManagement;
+                    hardSkillsList[25].textContent = translations[language].privateAndPublicManagement;
+                    hardSkillsList[26].textContent = translations[language].technologicalInnovation;
+                    hardSkillsList[27].textContent = translations[language].projectManagementWithFocusOnAI;
                     
+                    // Update soft skills
                     const softSkillsList = document.querySelectorAll('.skill-category ul')[1].querySelectorAll('li');
                     softSkillsList[0].textContent = translations[language].solutionOriented;
                     softSkillsList[1].textContent = translations[language].handsOn;
                     softSkillsList[2].textContent = translations[language].cooperative;
                     softSkillsList[3].textContent = translations[language].communicationStrong;
+                    softSkillsList[4].textContent = translations[language].empathetic;
+                    softSkillsList[5].textContent = translations[language].selfResponsible;
+                    softSkillsList[6].textContent = translations[language].creative;
+                    softSkillsList[7].textContent = translations[language].selfReflective;
+                    softSkillsList[8].textContent = translations[language].willingToLearn;
+                    softSkillsList[9].textContent = translations[language].teamPlayer;
+                    softSkillsList[10].textContent = translations[language].sociallyCompetent;
+                    softSkillsList[11].textContent = translations[language].strongWrittenExpression;
+                    softSkillsList[12].textContent = translations[language].culturallyOpen;
+                    softSkillsList[13].textContent = translations[language].digitallyAffine;
+                    softSkillsList[14].textContent = translations[language].structured;
+                    softSkillsList[15].textContent = translations[language].responsible;
                     
                     // Update experience section
                     const timelineItems = document.querySelectorAll('.timeline-item');
@@ -480,7 +692,26 @@
                     // Social Media Manager
                     timelineItems[0].querySelector('h3').textContent = translations[language].socialMediaManager;
                     timelineItems[0].querySelector('.timeline-date').textContent = `${translations[language].chimfunshi} | 03/2025 - heute`;
-                    timelineItems[0].querySelector('li').textContent = translations[language].strategicPlanning;
+                    
+                    // Update the Social Media Manager responsibilities to separate lines
+                    const socialMediaItems = timelineItems[0].querySelectorAll('li');
+                    if (socialMediaItems.length === 1) {
+                        // If there's only one li element, split it into two
+                        const originalText = socialMediaItems[0].textContent;
+                        const responsibilities = originalText.split(', ');
+                        
+                        // Clear the existing li
+                        socialMediaItems[0].textContent = responsibilities[0];
+                        
+                        // Add the other responsibility as a new li element
+                        const newLi = document.createElement('li');
+                        newLi.textContent = responsibilities[1];
+                        timelineItems[0].querySelector('ul').appendChild(newLi);
+                    } else {
+                        // If there are already separate li elements, update them
+                        socialMediaItems[0].textContent = translations[language].strategicPlanning;
+                        socialMediaItems[1].textContent = translations[language].contentCreation;
+                    }
                     
                     // Managing Director
                     timelineItems[1].querySelector('h3').textContent = translations[language].managingDirector;
@@ -497,7 +728,29 @@
                     // Jaegermeister
                     timelineItems[2].querySelector('h3').textContent = translations[language].jaegermeister;
                     timelineItems[2].querySelector('.timeline-date').textContent = `06/2008 - 12/2017`;
-                    timelineItems[2].querySelector('li').textContent = translations[language].organization;
+                    
+                    // Update the Jägermeister responsibilities to separate lines
+                    const jaegermeisterItems = timelineItems[2].querySelectorAll('li');
+                    if (jaegermeisterItems.length === 1) {
+                        // If there's only one li element, split it into three
+                        const originalText = jaegermeisterItems[0].textContent;
+                        const responsibilities = originalText.split(', ');
+                        
+                        // Clear the existing li
+                        jaegermeisterItems[0].textContent = responsibilities[0];
+                        
+                        // Add the other responsibilities as new li elements
+                        for (let i = 1; i < responsibilities.length; i++) {
+                            const newLi = document.createElement('li');
+                            newLi.textContent = responsibilities[i];
+                            timelineItems[2].querySelector('ul').appendChild(newLi);
+                        }
+                    } else {
+                        // If there are already separate li elements, update them
+                        jaegermeisterItems[0].textContent = translations[language].organization;
+                        jaegermeisterItems[1].textContent = translations[language].deploymentPlanning;
+                        jaegermeisterItems[2].textContent = translations[language].customerCare;
+                    }
                     
                     // AI for Business
                     timelineItems[3].querySelector('h3').textContent = translations[language].aiForBusiness;
@@ -543,10 +796,6 @@
                     document.querySelector('.hero p').textContent = translations[language].tagline;
                 });
             });
-            
-            // Set initial language based on active button
-            const activeLanguage = document.querySelector('.language-option.active').getAttribute('data-lang');
-            document.querySelector('html').setAttribute('lang', activeLanguage);
         });
     </script>
 </body>
