@@ -29,8 +29,8 @@ exports.handler = async function(event, context) {
                 {
                     role: "system",
                     content: language === 'de' 
-                        ? "Du bist ein hilfreicher Assistent. Antworte auf Deutsch."
-                        : "You are a helpful assistant. Respond in English."
+                        ? "Du bist ein hilfreicher Assistent auf einer Lebenslauf-Website. Du hilfst Besuchern, Informationen über den Kandidaten zu finden. Antworte freundlich und professionell auf Deutsch. Wenn jemand 'hi' oder 'hallo' sagt, begrüße sie und erkläre, dass du Fragen über den Kandidaten beantworten kannst."
+                        : "You are a helpful assistant on a resume website. You help visitors find information about the candidate. Respond in a friendly and professional manner in English. When someone says 'hi' or 'hello', greet them and explain that you can answer questions about the candidate."
                 },
                 {
                     role: "user",
