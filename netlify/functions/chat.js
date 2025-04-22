@@ -40,13 +40,17 @@ exports.handler = async function(event, context) {
             };
         }
 
+        // Log environment information
+        console.log('Environment:', {
+            NODE_ENV: process.env.NODE_ENV,
+            OPENAI_API_KEY_PRESENT: !!process.env.OPENAI_API_KEY,
+            OPENAI_API_KEY_LENGTH: process.env.OPENAI_API_KEY.length,
+            OPENAI_API_KEY_PREFIX: process.env.OPENAI_API_KEY.substring(0, 3)
+        });
+
         // Parse the request body
         const { message, language } = JSON.parse(event.body);
-
-        // Log the API key status (without exposing the actual key)
-        console.log('API Key Status:', process.env.OPENAI_API_KEY ? 'Present' : 'Missing');
-        console.log('API Key Length:', process.env.OPENAI_API_KEY.length);
-        console.log('API Key Prefix:', process.env.OPENAI_API_KEY.substring(0, 3) + '...');
+        console.log('Request received:', { message, language });
 
         // Initialize OpenAI client
         const configuration = new Configuration({
@@ -55,6 +59,7 @@ exports.handler = async function(event, context) {
         const openai = new OpenAIApi(configuration);
 
         // Create the chat completion
+        console.log('Creating chat completion...');
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [
@@ -73,6 +78,7 @@ exports.handler = async function(event, context) {
             max_tokens: 500
         });
 
+        console.log('Chat completion created successfully');
         // Extract the assistant's reply
         const response = completion.data.choices[0].message.content;
 
