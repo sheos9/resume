@@ -40,34 +40,38 @@ exports.handler = async function(event, context) {
             };
         }
 
-        // Log environment information
-        console.log('Environment:', {
-            NODE_ENV: process.env.NODE_ENV,
-            OPENAI_API_KEY_PRESENT: !!process.env.OPENAI_API_KEY,
-            OPENAI_API_KEY_LENGTH: process.env.OPENAI_API_KEY.length,
-            OPENAI_API_KEY_PREFIX: process.env.OPENAI_API_KEY.substring(0, 3)
-        });
-
         // Parse the request body
-        const { message, language } = JSON.parse(event.body);
-        console.log('Request received:', { message, language });
+        let body;
+        try {
+            body = JSON.parse(event.body);
+        } catch (e) {
+            console.error('Error parsing request body:', e);
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({ error: 'Invalid request body' })
+            };
+        }
 
-        // Initialize OpenAI client
+        const { message, language } = body;
+
+        // Initialize OpenAI client with explicit configuration
         const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY
+            apiKey: process.env.OPENAI_API_KEY,
+            organization: null // Add this to avoid potential issues
         });
+
         const openai = new OpenAIApi(configuration);
 
-        // Create the chat completion
-        console.log('Creating chat completion...');
+        // Create a simple chat completion
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [
                 {
                     role: "system",
                     content: language === 'de' 
-                        ? "Du bist ein hilfreicher Assistent auf einer Lebenslauf-Website. Du hilfst Besuchern, Informationen über den Kandidaten zu finden. Antworte freundlich und professionell auf Deutsch. Wenn jemand 'hi' oder 'hallo' sagt, begrüße sie und erkläre, dass du Fragen über den Kandidaten beantworten kannst."
-                        : "You are a helpful assistant on a resume website. You help visitors find information about the candidate. Respond in a friendly and professional manner in English. When someone says 'hi' or 'hello', greet them and explain that you can answer questions about the candidate."
+                        ? "Du bist ein hilfreicher Assistent auf einer Lebenslauf-Website."
+                        : "You are a helpful assistant on a resume website."
                 },
                 {
                     role: "user",
@@ -75,11 +79,10 @@ exports.handler = async function(event, context) {
                 }
             ],
             temperature: 0.7,
-            max_tokens: 500
+            max_tokens: 100
         });
 
-        console.log('Chat completion created successfully');
-        // Extract the assistant's reply
+        // Extract the response
         const response = completion.data.choices[0].message.content;
 
         return {
@@ -91,6 +94,7 @@ exports.handler = async function(event, context) {
     } catch (error) {
         // Log the full error details
         console.error('Full Error:', {
+            name: error.name,
             message: error.message,
             code: error.code,
             status: error.status,
@@ -104,11 +108,17 @@ exports.handler = async function(event, context) {
 
         // Return a more user-friendly error message
         let errorMessage = 'An error occurred while processing your request';
+        let errorDetails = error.message;
+
         if (error.response) {
             if (error.response.status === 401) {
-                errorMessage = 'Authentication error. Please check the API key configuration.';
+                errorMessage = 'Authentication error';
+                errorDetails = 'Please check if the API key is correct and has not expired.';
             } else if (error.response.status === 429) {
-                errorMessage = 'Rate limit exceeded. Please try again later.';
+                errorMessage = 'Rate limit exceeded';
+                errorDetails = 'Please try again later.';
+            } else if (error.response.data) {
+                errorDetails = error.response.data.error?.message || errorDetails;
             }
         }
 
@@ -117,9 +127,7 @@ exports.handler = async function(event, context) {
             headers,
             body: JSON.stringify({ 
                 error: errorMessage,
-                details: error.message,
-                code: error.code,
-                status: error.status
+                details: errorDetails
             })
         };
     }
