@@ -1,6 +1,11 @@
-const { Configuration, OpenAIApi } = require('openai');
+const OpenAI = require('openai');
+const { handler } = require('@netlify/functions');
 
-exports.handler = async function(event, context) {
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
+
+exports.handler = handler(async (event, context) => {
     console.log('Function started');
     
     // Set CORS headers
@@ -68,18 +73,9 @@ exports.handler = async function(event, context) {
             };
         }
 
-        console.log('Initializing OpenAI client...');
-        // Initialize OpenAI client with explicit configuration
-        const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY,
-            organization: null
-        });
-
-        const openai = new OpenAIApi(configuration);
-
         console.log('Creating chat completion...');
-        // Create a simple chat completion
-        const completion = await openai.createChatCompletion({
+        // Create a chat completion
+        const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 {
@@ -99,7 +95,7 @@ exports.handler = async function(event, context) {
 
         console.log('Chat completion successful');
         // Extract the response
-        const response = completion.data.choices[0].message.content;
+        const response = completion.choices[0].message.content;
 
         return {
             statusCode: 200,
@@ -147,4 +143,4 @@ exports.handler = async function(event, context) {
             })
         };
     }
-}; 
+}); 
