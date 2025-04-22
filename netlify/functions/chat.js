@@ -13,6 +13,9 @@ exports.handler = async function(event, context) {
         // Parse the request body
         const { message, language } = JSON.parse(event.body);
 
+        // Log the API key status (without exposing the actual key)
+        console.log('API Key Status:', process.env.OPENAI_API_KEY ? 'Present' : 'Missing');
+
         // Initialize OpenAI client
         const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY
@@ -47,12 +50,25 @@ exports.handler = async function(event, context) {
         };
 
     } catch (error) {
-        console.error('Error:', error);
+        // Log the full error details
+        console.error('Full Error:', {
+            message: error.message,
+            code: error.code,
+            status: error.status,
+            response: error.response ? {
+                status: error.response.status,
+                statusText: error.response.statusText,
+                data: error.response.data
+            } : null
+        });
+
         return {
             statusCode: 500,
             body: JSON.stringify({ 
                 error: 'An error occurred while processing your request',
-                details: error.message
+                details: error.message,
+                code: error.code,
+                status: error.status
             })
         };
     }
