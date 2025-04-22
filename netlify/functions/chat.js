@@ -1,4 +1,4 @@
-const OpenAI = require('openai');
+const { Configuration, OpenAIApi } = require('openai');
 
 exports.handler = async function(event, context) {
     // Only allow POST requests
@@ -14,12 +14,13 @@ exports.handler = async function(event, context) {
         const { message, language } = JSON.parse(event.body);
 
         // Initialize OpenAI client
-        const openai = new OpenAI({
+        const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY
         });
+        const openai = new OpenAIApi(configuration);
 
         // Create the chat completion
-        const completion = await openai.chat.completions.create({
+        const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [
                 {
@@ -38,7 +39,7 @@ exports.handler = async function(event, context) {
         });
 
         // Extract the assistant's reply
-        const response = completion.choices[0].message.content;
+        const response = completion.data.choices[0].message.content;
 
         return {
             statusCode: 200,
