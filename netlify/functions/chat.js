@@ -1,6 +1,8 @@
 const { Configuration, OpenAIApi } = require('openai');
 
 exports.handler = async function(event, context) {
+    console.log('Function started');
+    
     // Set CORS headers
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -27,6 +29,7 @@ exports.handler = async function(event, context) {
     }
 
     try {
+        console.log('Checking API key...');
         // Check if API key is present
         if (!process.env.OPENAI_API_KEY) {
             console.error('OpenAI API key is missing');
@@ -40,10 +43,12 @@ exports.handler = async function(event, context) {
             };
         }
 
+        console.log('Parsing request body...');
         // Parse the request body
         let body;
         try {
             body = JSON.parse(event.body);
+            console.log('Request body:', body);
         } catch (e) {
             console.error('Error parsing request body:', e);
             return {
@@ -54,15 +59,25 @@ exports.handler = async function(event, context) {
         }
 
         const { message, language } = body;
+        if (!message) {
+            console.error('No message provided in request');
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({ error: 'Message is required' })
+            };
+        }
 
+        console.log('Initializing OpenAI client...');
         // Initialize OpenAI client with explicit configuration
         const configuration = new Configuration({
             apiKey: process.env.OPENAI_API_KEY,
-            organization: null // Add this to avoid potential issues
+            organization: null
         });
 
         const openai = new OpenAIApi(configuration);
 
+        console.log('Creating chat completion...');
         // Create a simple chat completion
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
@@ -82,6 +97,7 @@ exports.handler = async function(event, context) {
             max_tokens: 100
         });
 
+        console.log('Chat completion successful');
         // Extract the response
         const response = completion.data.choices[0].message.content;
 
@@ -123,7 +139,7 @@ exports.handler = async function(event, context) {
         }
 
         return {
-            statusCode: 500,
+            statusCode: error.response?.status || 500,
             headers,
             body: JSON.stringify({ 
                 error: errorMessage,
