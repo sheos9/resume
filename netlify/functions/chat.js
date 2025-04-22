@@ -10,11 +10,25 @@ exports.handler = async function(event, context) {
     }
 
     try {
+        // Check if API key is present
+        if (!process.env.OPENAI_API_KEY) {
+            console.error('OpenAI API key is missing');
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ 
+                    error: 'Configuration error',
+                    details: 'OpenAI API key is not configured. Please check your Netlify environment variables.'
+                })
+            };
+        }
+
         // Parse the request body
         const { message, language } = JSON.parse(event.body);
 
         // Log the API key status (without exposing the actual key)
         console.log('API Key Status:', process.env.OPENAI_API_KEY ? 'Present' : 'Missing');
+        console.log('API Key Length:', process.env.OPENAI_API_KEY.length);
+        console.log('API Key Prefix:', process.env.OPENAI_API_KEY.substring(0, 3) + '...');
 
         // Initialize OpenAI client
         const configuration = new Configuration({
@@ -59,13 +73,24 @@ exports.handler = async function(event, context) {
                 status: error.response.status,
                 statusText: error.response.statusText,
                 data: error.response.data
-            } : null
+            } : null,
+            stack: error.stack
         });
+
+        // Return a more user-friendly error message
+        let errorMessage = 'An error occurred while processing your request';
+        if (error.response) {
+            if (error.response.status === 401) {
+                errorMessage = 'Authentication error. Please check the API key configuration.';
+            } else if (error.response.status === 429) {
+                errorMessage = 'Rate limit exceeded. Please try again later.';
+            }
+        }
 
         return {
             statusCode: 500,
             body: JSON.stringify({ 
-                error: 'An error occurred while processing your request',
+                error: errorMessage,
                 details: error.message,
                 code: error.code,
                 status: error.status
