@@ -1,10 +1,27 @@
 const { Configuration, OpenAIApi } = require('openai');
 
 exports.handler = async function(event, context) {
+    // Set CORS headers
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    };
+
+    // Handle preflight requests
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: ''
+        };
+    }
+
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
+            headers,
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
@@ -15,6 +32,7 @@ exports.handler = async function(event, context) {
             console.error('OpenAI API key is missing');
             return {
                 statusCode: 500,
+                headers,
                 body: JSON.stringify({ 
                     error: 'Configuration error',
                     details: 'OpenAI API key is not configured. Please check your Netlify environment variables.'
@@ -60,6 +78,7 @@ exports.handler = async function(event, context) {
 
         return {
             statusCode: 200,
+            headers,
             body: JSON.stringify({ response })
         };
 
@@ -89,6 +108,7 @@ exports.handler = async function(event, context) {
 
         return {
             statusCode: 500,
+            headers,
             body: JSON.stringify({ 
                 error: errorMessage,
                 details: error.message,

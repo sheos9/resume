@@ -77,16 +77,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             });
 
-            if (!response.ok) {
-                throw new Error('API request failed');
-            }
-
             const data = await response.json();
-            
+
             // Remove typing indicator
             const typingIndicator = chatMessages.querySelector('.bot.typing');
             if (typingIndicator) {
                 chatMessages.removeChild(typingIndicator);
+            }
+
+            if (!response.ok) {
+                throw new Error(data.error || 'API request failed');
             }
 
             // Add bot's response
@@ -95,11 +95,32 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error:', error);
             const errorMessages = {
-                en: 'Sorry, I encountered an error. Please try again.',
-                de: 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
+                en: {
+                    default: 'Sorry, I encountered an error. Please try again.',
+                    config: 'Configuration error. Please check the API settings.',
+                    auth: 'Authentication error. Please check the API key.',
+                    rate: 'Rate limit exceeded. Please try again later.'
+                },
+                de: {
+                    default: 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+                    config: 'Konfigurationsfehler. Bitte überprüfen Sie die API-Einstellungen.',
+                    auth: 'Authentifizierungsfehler. Bitte überprüfen Sie den API-Schlüssel.',
+                    rate: 'Rate-Limit überschritten. Bitte versuchen Sie es später erneut.'
+                }
             };
+            
             const currentLanguage = getCurrentLanguage();
-            addMessage(errorMessages[currentLanguage], 'bot');
+            let errorMessage = errorMessages[currentLanguage].default;
+            
+            if (error.message.includes('Configuration')) {
+                errorMessage = errorMessages[currentLanguage].config;
+            } else if (error.message.includes('Authentication')) {
+                errorMessage = errorMessages[currentLanguage].auth;
+            } else if (error.message.includes('Rate limit')) {
+                errorMessage = errorMessages[currentLanguage].rate;
+            }
+            
+            addMessage(errorMessage, 'bot');
         }
     }
 
