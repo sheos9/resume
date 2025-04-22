@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "openai": "^3.3.0"
+    "openai": "^3.3.0",
+    "supports-color": "^8.1.1"
   }
 } 
