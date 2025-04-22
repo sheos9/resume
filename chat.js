@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get current language from HTML
             const currentLanguage = getCurrentLanguage();
             
-            const response = await fetch('/.netlify/functions/chat', {
+            const response = await fetch('https://gsommer.netlify.app/.netlify/functions/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
