@@ -1,51 +1,58 @@
-const { Configuration, OpenAIApi } = require('openai');
-
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const OpenAI = require('openai');
 
 exports.handler = async function(event, context) {
+    // Only allow POST requests
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
-            body: JSON.stringify({ error: 'Method Not Allowed' }),
+            body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
 
     try {
-        const { message } = JSON.parse(event.body);
+        // Parse the request body
+        const { message, language } = JSON.parse(event.body);
 
-        const completion = await openai.createChatCompletion({
+        // Initialize OpenAI client
+        const openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY
+        });
+
+        // Create the chat completion
+        const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 {
                     role: "system",
-                    content: "You are a helpful and friendly AI assistant. Keep your responses concise and engaging."
+                    content: language === 'de' 
+                        ? "Du bist ein hilfreicher Assistent. Antworte auf Deutsch."
+                        : "You are a helpful assistant. Respond in English."
                 },
                 {
                     role: "user",
                     content: message
                 }
             ],
-            max_tokens: 150,
             temperature: 0.7,
+            max_tokens: 500
         });
+
+        // Extract the assistant's reply
+        const response = completion.choices[0].message.content;
 
         return {
             statusCode: 200,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                response: completion.data.choices[0].message.content.trim()
-            }),
+            body: JSON.stringify({ response })
         };
+
     } catch (error) {
         console.error('Error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Internal Server Error' }),
+            body: JSON.stringify({ 
+                error: 'An error occurred while processing your request',
+                details: error.message
+            })
         };
     }
 }; 

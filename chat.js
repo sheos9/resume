@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendMessage = document.getElementById('sendMessage');
     const userInput = document.getElementById('userInput');
     const chatMessages = document.getElementById('chatMessages');
+    
+    // Get current language from HTML lang attribute
+    function getCurrentLanguage() {
+        return document.documentElement.getAttribute('lang') || 'en';
+    }
 
     // Toggle chat box
     chatButton.addEventListener('click', () => {
@@ -58,12 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show typing indicator
             addMessage('...', 'bot typing');
 
+            // Get current language from HTML
+            const currentLanguage = getCurrentLanguage();
+            
             const response = await fetch('/.netlify/functions/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message })
+                body: JSON.stringify({ 
+                    message,
+                    language: currentLanguage
+                })
             });
 
             if (!response.ok) {
@@ -83,7 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } catch (error) {
             console.error('Error:', error);
-            addMessage('Sorry, I encountered an error. Please try again.', 'bot');
+            const errorMessages = {
+                en: 'Sorry, I encountered an error. Please try again.',
+                de: 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
+            };
+            const currentLanguage = getCurrentLanguage();
+            addMessage(errorMessages[currentLanguage], 'bot');
         }
     }
 
@@ -100,8 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
         flagIcon.src = `assets/images/flags/${newLang}.svg`;
         flagIcon.alt = newLang === 'en' ? 'English' : 'Deutsch';
         
-        // Update content
+        // Update content and chat language
         updateContent(newLang);
+        currentLang = newLang;
+        updateInitialMessage();
     });
 
     function updateContent(lang) {
@@ -112,14 +130,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 experience: 'Experience',
                 education: 'Education',
                 skills: 'Skills',
-                contact: 'Contact'
+                contact: 'Contact',
+                placeholder: 'Ask me anything...'
             },
             de: {
                 about: 'Über Mich',
                 experience: 'Erfahrung',
                 education: 'Ausbildung',
                 skills: 'Fähigkeiten',
-                contact: 'Kontakt'
+                contact: 'Kontakt',
+                placeholder: 'Fragen Sie mich etwas...'
             }
         };
 
@@ -130,6 +150,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.textContent = translations[lang][key];
             }
         });
+
+        // Update chat input placeholder
+        userInput.placeholder = translations[lang].placeholder;
     }
 
     // Hamburger menu functionality
@@ -154,4 +177,8 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburgerMenu.classList.remove('active');
         }
     });
+
+    // Initialize chat with current language
+    updateInitialMessage();
+    updateContent(getCurrentLanguage());
 }); 
