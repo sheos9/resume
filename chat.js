@@ -24,7 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Send message function
-    function sendUserMessage() {
+    function sendUserMessage(event) {
+        // Prevent default form submission if this is called from a form
+        if (event) {
+            event.preventDefault();
+        }
+
         const message = userInput.value.trim();
         if (message === '') return;
 
@@ -44,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Send message on Enter key
     userInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent form submission
             sendUserMessage();
         }
     });
