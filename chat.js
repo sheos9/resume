@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Send message function
     function sendUserMessage(event) {
-        // Prevent default form submission if this is called from a form
         if (event) {
             event.preventDefault();
         }
@@ -33,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = userInput.value.trim();
         if (message === '') return;
 
+        console.log('Sending message:', message);
+        
         // Add user message to chat
         addMessage(message, 'user');
         
@@ -44,12 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Send message on button click
-    sendMessage.addEventListener('click', sendUserMessage);
+    sendMessage.addEventListener('click', (e) => {
+        e.preventDefault();
+        sendUserMessage();
+    });
 
     // Send message on Enter key
     userInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault();
             sendUserMessage();
         }
     });
@@ -72,20 +76,28 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get current language from HTML
             const currentLanguage = getCurrentLanguage();
             
-            console.log('Sending request to chat function...');
-            const response = await fetch('/.netlify/functions/chat', {
+            console.log('Preparing to send request...');
+            const requestOptions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
                 },
                 body: JSON.stringify({ 
                     message,
                     language: currentLanguage
                 })
-            });
-
+            };
+            
+            console.log('Request options:', requestOptions);
+            console.log('Sending request to chat function...');
+            
+            const response = await fetch('/.netlify/functions/chat', requestOptions);
+            
+            console.log('Response received:', response);
             console.log('Response status:', response.status);
+            
             const data = await response.json();
             console.log('Response data:', data);
 
