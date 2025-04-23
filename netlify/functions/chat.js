@@ -1,12 +1,12 @@
 const OpenAI = require('openai');
-const { handler } = require('@netlify/functions');
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-exports.handler = handler(async (event, context) => {
-    console.log('Function started');
+exports.handler = async (event, context) => {
+    // Log the start of the function
+    console.log('Function started with event:', JSON.stringify(event, null, 2));
     
     // Set CORS headers
     const headers = {
@@ -34,7 +34,6 @@ exports.handler = handler(async (event, context) => {
     }
 
     try {
-        console.log('Checking API key...');
         // Check if API key is present
         if (!process.env.OPENAI_API_KEY) {
             console.error('OpenAI API key is missing');
@@ -48,7 +47,6 @@ exports.handler = handler(async (event, context) => {
             };
         }
 
-        console.log('Parsing request body...');
         // Parse the request body
         let body;
         try {
@@ -73,8 +71,8 @@ exports.handler = handler(async (event, context) => {
             };
         }
 
-        console.log('Creating chat completion...');
         // Create a chat completion
+        console.log('Creating chat completion with message:', message);
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
@@ -93,8 +91,7 @@ exports.handler = handler(async (event, context) => {
             max_tokens: 100
         });
 
-        console.log('Chat completion successful');
-        // Extract the response
+        console.log('Chat completion successful:', completion);
         const response = completion.choices[0].message.content;
 
         return {
@@ -105,7 +102,7 @@ exports.handler = handler(async (event, context) => {
 
     } catch (error) {
         // Log the full error details
-        console.error('Full Error:', {
+        console.error('Error details:', {
             name: error.name,
             message: error.message,
             code: error.code,
@@ -143,4 +140,4 @@ exports.handler = handler(async (event, context) => {
             })
         };
     }
-}); 
+}; 

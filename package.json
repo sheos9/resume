@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "openai": "^3.3.0"
-  },
-  "devDependencies": {
-    "netlify-lambda": "^2.0.15"
+    "openai": "^4.28.0"
   },
   "scripts": {
-    "start": "netlify-lambda serve netlify/functions",
-    "build": "netlify-lambda build netlify/functions"
+    "build": "echo 'No build step required'"
   }
 } 
