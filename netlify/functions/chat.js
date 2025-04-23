@@ -11,12 +11,14 @@ exports.handler = async (event, context) => {
     // Set CORS headers
     const headers = {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Content-Type': 'application/json'
     };
 
     // Handle preflight requests
     if (event.httpMethod === 'OPTIONS') {
+        console.log('Handling OPTIONS request');
         return {
             statusCode: 200,
             headers,
@@ -26,10 +28,14 @@ exports.handler = async (event, context) => {
 
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
+        console.log('Method not allowed:', event.httpMethod);
         return {
             statusCode: 405,
             headers,
-            body: JSON.stringify({ error: 'Method not allowed' })
+            body: JSON.stringify({ 
+                error: 'Method not allowed',
+                details: `Method ${event.httpMethod} is not allowed. Only POST requests are accepted.`
+            })
         };
     }
 

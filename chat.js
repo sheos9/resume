@@ -66,10 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get current language from HTML
             const currentLanguage = getCurrentLanguage();
             
+            console.log('Sending request to chat function...');
             const response = await fetch('/.netlify/functions/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({ 
                     message,
@@ -77,7 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             });
 
+            console.log('Response status:', response.status);
             const data = await response.json();
+            console.log('Response data:', data);
 
             // Remove typing indicator
             const typingIndicator = chatMessages.querySelector('.bot.typing');
