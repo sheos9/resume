@@ -71,12 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
     async function getBotResponse(message) {
         try {
             // Show typing indicator
-            addMessage('...', 'bot typing');
+            addMessage('...', 'bot-typing');
 
             // Get current language from HTML
             const currentLanguage = getCurrentLanguage();
             
-            console.log('Preparing to send request...');
+            console.log('Current language:', currentLanguage);
+            console.log('Message to send:', message);
+            
             const requestOptions = {
                 method: 'POST',
                 headers: {
@@ -97,12 +99,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('Response received:', response);
             console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
             
             const data = await response.json();
             console.log('Response data:', data);
 
             // Remove typing indicator
-            const typingIndicator = chatMessages.querySelector('.bot.typing');
+            const typingIndicator = chatMessages.querySelector('.bot-typing');
             if (typingIndicator) {
                 chatMessages.removeChild(typingIndicator);
             }
