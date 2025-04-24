@@ -156,8 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const langButton = document.querySelector('.lang-option');
     const flagIcon = langButton.querySelector('.flag-icon');
 
+    // Initialize language from button state
+    let currentLang = langButton.getAttribute('data-lang') || 'en';
+    document.documentElement.setAttribute('lang', currentLang);
+
     langButton.addEventListener('click', () => {
-        const currentLang = langButton.getAttribute('data-lang');
         const newLang = currentLang === 'en' ? 'de' : 'en';
         
         // Update button attributes
@@ -165,14 +168,17 @@ document.addEventListener('DOMContentLoaded', function() {
         flagIcon.src = `assets/images/flags/${newLang}.svg`;
         flagIcon.alt = newLang === 'en' ? 'English' : 'Deutsch';
         
-        // Update content and chat language
-        updateContent(newLang);
+        // Update language state
         currentLang = newLang;
+        document.documentElement.setAttribute('lang', currentLang);
+        
+        // Update content and chat
+        updateContent(newLang);
         updateInitialMessage();
     });
 
     function updateInitialMessage() {
-        const currentLang = getCurrentLanguage();
+        const lang = getCurrentLanguage();
         const initialMessages = {
             en: "Hello! How can I help you?",
             de: "Hallo! Wie kann ich Ihnen behilflich sein?"
@@ -182,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.innerHTML = '';
         
         // Add the initial message
-        addMessage(initialMessages[currentLang], 'bot');
+        addMessage(initialMessages[lang], 'bot');
     }
 
     function updateContent(lang) {
