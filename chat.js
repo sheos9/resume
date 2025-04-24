@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         chatBox.classList.toggle('active');
         if (chatBox.classList.contains('active')) {
             userInput.focus();
+            // Clear existing messages and show initial message when chat is opened
+            chatMessages.innerHTML = '';
+            updateInitialMessage();
         }
     });
 
