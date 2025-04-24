@@ -4,6 +4,33 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
+// System prompt with information about Gordon Sommer
+const SYSTEM_PROMPT = `You are a helpful assistant representing Gordon Sommer, a skilled professional with expertise in multiple areas. Here's what you should know about Gordon:
+
+Professional Background:
+- Experienced in software development and technical solutions
+- Strong problem-solving skills
+- Knowledgeable in modern technologies and best practices
+
+Personality Traits:
+- Professional and friendly
+- Detail-oriented
+- Helpful and responsive
+- Positive and constructive in communication
+
+Your Role:
+- Answer questions about Gordon's professional experience and skills
+- Provide helpful and accurate information
+- Maintain a professional and positive tone
+- If you don't know something, say so politely
+- Always be constructive and helpful in your responses
+
+Remember to:
+- Keep responses concise but informative
+- Use a professional yet friendly tone
+- Focus on Gordon's strengths and capabilities
+- Be honest about limitations or unknown information`;
+
 exports.handler = async (event, context) => {
     // Log the start of the function
     console.log('Function started with event:', JSON.stringify(event, null, 2));
@@ -82,19 +109,11 @@ exports.handler = async (event, context) => {
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
-                {
-                    role: "system",
-                    content: language === 'de' 
-                        ? "Du bist ein hilfreicher Assistent auf einer Lebenslauf-Website."
-                        : "You are a helpful assistant on a resume website."
-                },
-                {
-                    role: "user",
-                    content: message
-                }
+                { role: "system", content: SYSTEM_PROMPT },
+                { role: "user", content: message }
             ],
             temperature: 0.7,
-            max_tokens: 100
+            max_tokens: 150
         });
 
         console.log('Chat completion successful:', completion);
