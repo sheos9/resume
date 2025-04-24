@@ -168,6 +168,20 @@ document.addEventListener('DOMContentLoaded', function() {
         updateInitialMessage();
     });
 
+    function updateInitialMessage() {
+        const currentLang = getCurrentLanguage();
+        const initialMessages = {
+            en: "Hello! How can I help you?",
+            de: "Hallo! Wie kann ich Ihnen behilflich sein?"
+        };
+        
+        // Clear existing messages
+        chatMessages.innerHTML = '';
+        
+        // Add the initial message
+        addMessage(initialMessages[currentLang], 'bot');
+    }
+
     function updateContent(lang) {
         // Update all text content based on language
         const translations = {
