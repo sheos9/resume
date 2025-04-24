@@ -875,22 +875,6 @@ body::after {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Integration Section */
-.integrations {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 4rem;
-    flex-wrap: wrap;
-}
-
-.integration-logo {
-    opacity: 0.8;
-    transition: var(--transition);
-}
-
-.integration-logo:hover {
     opacity: 1;
     transform: translateY(-2px);
 }
