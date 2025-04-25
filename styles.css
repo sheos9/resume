@@ -1066,6 +1066,10 @@ body::after {
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     /* Experience Section */
@@ -1081,6 +1085,8 @@ body::after {
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .timeline-item::before {
@@ -1171,6 +1177,8 @@ body::after {
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .education-item h3 {
