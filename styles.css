@@ -875,38 +875,33 @@ body::after {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-    opacity: 1;
-    transform: translateY(-2px);
+/* Paper Airplane Animation */
+.paper-plane {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: fly 8s linear infinite;
+    z-index: 1;
 }
 
-/* Paper Airplane Animation */
 @keyframes fly {
-    0% { 
-        transform: translate(0, 0) rotate(0deg); 
+    0% {
+        transform: translate(0, -50%) rotate(0deg);
     }
-    12.5% { 
-        transform: translate(150px, 0) rotate(-30deg); 
+    25% {
+        transform: translate(-100px, -100px) rotate(90deg);
     }
-    25% { 
-        transform: translate(250px, 80px) rotate(-45deg); 
+    50% {
+        transform: translate(-200px, 0) rotate(180deg);
     }
-    37.5% { 
-        transform: translate(150px, 160px) rotate(-30deg); 
+    75% {
+        transform: translate(-100px, 100px) rotate(270deg);
     }
-    50% { 
-        transform: translate(0, 0) rotate(0deg); 
-    }
-    62.5% { 
-        transform: translate(-150px, 0) rotate(30deg); 
-    }
-    75% { 
-        transform: translate(-250px, -80px) rotate(45deg); 
-    }
-    87.5% { 
-        transform: translate(-150px, -160px) rotate(30deg); 
-    }
-    100% { 
-        transform: translate(0, 0) rotate(0deg); 
+    100% {
+        transform: translate(0, -50%) rotate(360deg);
     }
 }
 
@@ -1570,4 +1565,82 @@ section::after {
     stroke-width: 2;
     fill: none;
     color: #ffffff;
+}
+
+/* Contact Section */
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+    margin-top: -1rem;
+}
+
+.contact-content p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-link:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-link svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .contact-links {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-link {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* Override background for Contact section */
+#contact.section {
+    background: none !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.contact-link:nth-child(1) { /* Email */
+    transform: translateX(-10px);
+}
+
+.contact-link:nth-child(3) { /* GitHub */
+    transform: translateX(10px);
 } 

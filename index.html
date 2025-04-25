@@ -214,6 +214,36 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <p>Feel free to reach out to me through any of these channels.</p>
+                <div class="contact-links">
+                    <a href="mailto:gordon.sommer@example.com" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="https://linkedin.com/in/gordonsommer" target="_blank" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/sheos9" target="_blank" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Chatbot Container - Unchanged -->
@@ -464,7 +494,14 @@
                     culturallyOpen: "Culturally open",
                     digitallyAffine: "Digitally affine",
                     structured: "Structured",
-                    responsible: "Responsible"
+                    responsible: "Responsible",
+                    
+                    // Contact section
+                    contactTitle: "Contact",
+                    contactText: "Feel free to reach out to me through any of these channels.",
+                    email: "Email",
+                    linkedin: "LinkedIn",
+                    github: "GitHub"
                 },
                 de: {
                     // Navigation
@@ -593,7 +630,14 @@
                     culturallyOpen: "Kulturell offen",
                     digitallyAffine: "Digital affin",
                     structured: "Strukturiert",
-                    responsible: "Verantwortungsbewusst"
+                    responsible: "Verantwortungsbewusst",
+                    
+                    // Contact section
+                    contactTitle: "Kontakt",
+                    contactText: "Kontaktieren Sie mich gerne über einen dieser Kanäle.",
+                    email: "E-Mail",
+                    linkedin: "LinkedIn",
+                    github: "GitHub"
                 }
             };
             
@@ -788,6 +832,20 @@
                     // Update hero content
                     document.querySelector('.hero h1').innerHTML = translations[language].heroTitle;
                     document.querySelector('.hero-tagline').textContent = translations[language].tagline;
+                    
+                    // Update contact section
+                    document.querySelector('#contact .section-title').textContent = translations[language].contactTitle;
+                    document.querySelector('#contact p').textContent = translations[language].contactText;
+                    
+                    // Update contact links while preserving SVG icons
+                    const contactLinks = document.querySelectorAll('.contact-link');
+                    contactLinks.forEach((link, index) => {
+                        const svg = link.querySelector('svg');
+                        const text = translations[language][index === 0 ? 'email' : index === 1 ? 'linkedin' : 'github'];
+                        link.innerHTML = '';
+                        if (svg) link.appendChild(svg);
+                        link.appendChild(document.createTextNode(text));
+                    });
                 });
             });
         });
