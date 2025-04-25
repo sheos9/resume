@@ -994,11 +994,15 @@ body::after {
         margin-bottom: 0.5rem;
         white-space: normal;
         display: block;
+        text-align: center;
+        width: 100%;
+        padding: 0 1rem;
     }
 
     .hero h1 span {
         display: inline;
         color: var(--accent-color);
+        white-space: nowrap;
     }
     
     .profile-image {
@@ -1054,20 +1058,16 @@ body::after {
         display: none;
     }
 
-    .timeline-item h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+    .timeline-item h3,
+    .timeline-date,
+    .timeline-item li,
+    .education-item h3,
+    .education-item p {
+        color: var(--text-color);
     }
 
-    .timeline-date {
-        font-size: 0.9rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .timeline-item li {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 0.5rem;
+    .timeline-item li::before {
+        color: var(--text-color);
     }
 
     /* Skills Section */
