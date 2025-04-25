@@ -947,67 +947,136 @@ body::after {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Base mobile adjustments */
+    body {
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    /* Navigation */
+    .nav {
+        padding: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+    }
+
+    .nav-right {
+        gap: 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 2rem 1rem;
+        margin-top: 60px;
+    }
+
     .hero-content {
         flex-direction: column;
         gap: 1.5rem;
-        padding: 1rem;
+        padding: 0;
     }
     
     .hero-text {
         text-align: center;
         padding: 0 1rem;
+        order: 2;
+        width: 100%;
     }
     
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+        white-space: normal;
+        display: block;
+    }
+
+    .hero h1 span {
+        display: inline;
+        color: var(--accent-color);
+    }
+    
+    .profile-image {
+        order: 1;
+        padding: 0;
+    }
+
     .profile-pic {
         width: 180px;
         height: 180px;
         border-width: 3px;
     }
 
-    body {
-        padding: var(--spacing-sm);
-    }
-
-    .header h1 {
-        font-size: 1.8rem;
-    }
-
+    /* Sections */
     .section {
-        padding: var(--spacing-sm);
+        padding: 1rem;
         margin: 1rem 0;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
     }
 
-    .profile-image {
-        padding: 10px;
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
-    
-    .timeline::before {
-        display: none;
-    }
-    
-    .timeline-item {
-        margin-left: 20px;
-        margin-right: 0;
+
+    /* About Section */
+    #about p {
+        font-size: 1rem;
+        line-height: 1.6;
         padding: 1rem;
     }
-    
-    .timeline-item::before {
-        left: -20px;
+
+    /* Experience Section */
+    .timeline {
+        padding: 0 1rem;
     }
-    
+
+    .timeline-item {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+
+    .timeline-item::before {
+        display: none;
+    }
+
+    /* Skills Section */
     .skills-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 0 1rem;
     }
 
+    .skill-category {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+
+    /* Contact Section */
     .contact-content {
         padding: 1rem;
+    }
+
+    .contact-content p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        padding: 0 1rem;
     }
 
     .contact-links {
         grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 1rem;
+        padding: 0 1rem;
     }
     
     .contact-link {
@@ -1015,16 +1084,31 @@ body::after {
         width: 100%;
         max-width: 300px;
         margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
     }
 
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
+    /* Chat Button */
+    .chat-container {
+        bottom: 1rem;
+        right: 1rem;
     }
 
-    .contact-content p {
-        font-size: 1rem;
-        margin-bottom: 1rem;
+    .chat-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Ensure all sections are visible */
+    section {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    /* Fix any potential overflow issues */
+    * {
+        max-width: 100%;
     }
 }
 
