@@ -992,7 +992,7 @@ body::after {
         font-size: 2.2rem;
         line-height: 1.2;
         margin-bottom: 0.5rem;
-        white-space: normal;
+        white-space: nowrap;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1010,7 +1010,7 @@ body::after {
         color: var(--accent-color);
         white-space: nowrap;
         font-weight: 700;
-        font-size: 2.2rem;
+        font-size: 2rem;
         margin-top: 0.2rem;
     }
     
