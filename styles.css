@@ -949,33 +949,36 @@ body::after {
 @media (max-width: 768px) {
     .hero-content {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
+        padding: 1rem;
     }
     
     .hero-text {
         text-align: center;
+        padding: 0 1rem;
     }
     
     .profile-pic {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
         border-width: 3px;
     }
 
     body {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
 
     .header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+        margin: 1rem 0;
     }
 
     .profile-image {
-        padding: 15px;
+        padding: 10px;
     }
     
     .timeline::before {
@@ -983,16 +986,45 @@ body::after {
     }
     
     .timeline-item {
-        margin-left: 40px;
+        margin-left: 20px;
         margin-right: 0;
+        padding: 1rem;
     }
     
     .timeline-item::before {
-        left: -30px;
+        left: -20px;
     }
     
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-content {
+        padding: 1rem;
+    }
+
+    .contact-links {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .contact-link {
+        padding: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-content p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
     }
 }
 
