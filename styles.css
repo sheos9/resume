@@ -1029,7 +1029,10 @@ body::after {
     #about p {
         font-size: 1rem;
         line-height: 1.6;
-        padding: 1rem;
+        padding: 1.5rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* Experience Section */
@@ -1039,13 +1042,32 @@ body::after {
 
     .timeline-item {
         margin: 1rem 0;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .timeline-item::before {
         display: none;
+    }
+
+    .timeline-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-date {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .timeline-item li {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
     }
 
     /* Skills Section */
@@ -1109,6 +1131,28 @@ body::after {
     /* Fix any potential overflow issues */
     * {
         max-width: 100%;
+    }
+
+    /* Education Section */
+    .education-item {
+        margin: 1rem 0;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .education-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .education-item p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
     }
 }
 
