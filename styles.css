@@ -973,12 +973,18 @@ body::after {
     .hero {
         padding: 2rem 1rem;
         margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .hero-content {
         flex-direction: column;
         gap: 1.5rem;
         padding: 0;
+        width: 100%;
+        max-width: 320px;
     }
     
     .hero-text {
@@ -989,7 +995,7 @@ body::after {
     }
     
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         line-height: 1.2;
         margin-bottom: 0.5rem;
         white-space: nowrap;
@@ -1010,7 +1016,7 @@ body::after {
         color: var(--accent-color);
         white-space: nowrap;
         font-weight: 700;
-        font-size: 2.4rem;
+        font-size: 2rem;
         margin-top: 0.2rem;
         text-align: center;
         width: 100%;
