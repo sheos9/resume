@@ -666,19 +666,16 @@ body::after {
 
 /* About Me Section - Enhanced */
 #about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 1.5rem;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
     background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
     border-radius: 15px;
-    margin: 0 auto;
-    max-width: 800px;
-    font-size: 1.15rem;
-    line-height: 1.5;
-    position: relative;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-    z-index: 1;
-    text-align: center;
 }
 
 #about p:hover {
@@ -1063,7 +1060,7 @@ body::after {
         font-size: 1rem;
         line-height: 1.6;
         padding: 1.5rem;
-        max-width: 90%;
+        max-width: 70%;
         margin-left: auto;
         margin-right: auto;
         background: rgba(255, 255, 255, 0.1);
