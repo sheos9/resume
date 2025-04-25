@@ -1010,8 +1010,10 @@ body::after {
         color: var(--accent-color);
         white-space: nowrap;
         font-weight: 700;
-        font-size: 2rem;
+        font-size: 2.4rem;
         margin-top: 0.2rem;
+        text-align: center;
+        width: 100%;
     }
     
     .profile-image {
