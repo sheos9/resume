@@ -25,7 +25,7 @@
                     </button>
                     <div class="language-switcher">
                         <button class="lang-option" data-lang="en">
-                            <img src="assets/images/flags/en.svg" alt="English" class="flag-icon">
+                            <img src="assets/images/flags/de.svg" alt="English" class="flag-icon">
                         </button>
                     </div>
                     <a href="#about" class="menu-link">About Me</a>
@@ -652,6 +652,16 @@
                     
                     // Update HTML lang attribute
                     document.querySelector('html').setAttribute('lang', language);
+                    
+                    // Update flag image based on current language
+                    const flagIcon = this.querySelector('.flag-icon');
+                    if (language === 'en') {
+                        flagIcon.src = 'assets/images/flags/de.svg';
+                        flagIcon.alt = 'Deutsch';
+                    } else {
+                        flagIcon.src = 'assets/images/flags/en.svg';
+                        flagIcon.alt = 'English';
+                    }
                     
                     // Update navigation links
                     const navLinks = document.querySelectorAll('.menu-link');
