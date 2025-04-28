@@ -962,7 +962,6 @@ body::after {
     .nav {
         padding: 0.5rem;
         background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
     }
 
@@ -1051,7 +1050,6 @@ body::after {
         padding: 1rem;
         margin: 1rem 0;
         background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
     }
 
@@ -1069,8 +1067,6 @@ body::after {
         margin-left: auto;
         margin-right: auto;
         background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
@@ -1088,7 +1084,6 @@ body::after {
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
@@ -1120,7 +1115,6 @@ body::after {
         padding: 1rem;
         background: none;
         border-radius: 0;
-        backdrop-filter: none;
         -webkit-backdrop-filter: none;
         border: none;
     }
@@ -1172,9 +1166,8 @@ body::after {
         max-width: 300px;
         margin: 0 auto;
         background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
+        border-radius: 8px;
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -1188,7 +1181,6 @@ body::after {
         width: 60px;
         height: 60px;
         background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
@@ -1214,7 +1206,6 @@ body::after {
         max-width: 90%;
         margin-left: auto;
         margin-right: auto;
-        backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
@@ -1890,4 +1881,37 @@ section::after {
 
 .contact-link:nth-child(3) { /* GitHub */
     transform: translateX(10px);
+}
+
+/* Android-specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) and (max-width: 768px) {
+    .nav {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .section {
+        background: rgba(255, 255, 255, 0.05);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    #about p {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .timeline-item {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .education-item {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .contact-link {
+        background: rgba(255, 255, 255, 0.1);
+        -webkit-backdrop-filter: blur(5px);
+    }
 } 
